@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer className="Footer-wrapper">
-      <h1>Footer</h1>
+      <h1>Footer.js</h1>
     </footer>
   );
 }
