@@ -1,4 +1,14 @@
 .PokePreview-wrapper {
   border: solid 3px orange;
-  width: 25%;
+  padding: 1em;
+  text-align: center;
+}
+
+.PokePreview-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.PokePreview-pokemon-name {
+  font-size: 1.2em;
 }
