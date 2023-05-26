@@ -64,7 +64,7 @@ function PokeGallery() {
       {pokeData.length > 0 && !isCompleted ? (
         <section className="PokeGallery-btn-section">
           <button className="PokeGallery-btn" onClick={increasePage}>
-            show 12 more
+            show {pokePerPage} more
           </button>
         </section>
       ) : (
