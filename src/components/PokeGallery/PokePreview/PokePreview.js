@@ -6,7 +6,7 @@ function PokePreview({ id, name }) {
       {/* <Link to={`/pokemon/${id}`} className="PokePreview-link"> */}
       <figure>
         <img
-          src={`https://picsum.photos/200/200?random=${id}`}
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
           alt={name}
           className="PokePreview-img"
         />
