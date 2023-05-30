@@ -1,0 +1,14 @@
+.random-Wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  text-decoration: none;
+}
+
+.random-Wrapper a {
+  text-decoration: none;
+  color: black;
+}
+
+.random-pokePreview {
+  text-align: center;
+}
