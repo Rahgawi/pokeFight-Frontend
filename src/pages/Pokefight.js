@@ -24,7 +24,8 @@ export default function Pokefight() {
   //fetched unser JSON
   const getRandomPokemon = async () => {
     const fetchID = generateIDs();
-    return await fetchPokemon(fetchID);
+    const pokemon = await fetchPokemon(fetchID);
+    return pokemon;
   };
   // Komponente für den Pokémon-Kampf
   const [pokemon1, setPokemon1] = useState({});
@@ -32,8 +33,7 @@ export default function Pokefight() {
   const [battleLog, setBattleLog] = useState([]);
 
   useEffect(() => {
-    setPokemon1(getRandomPokemon());
-    setPokemon2(getRandomPokemon());
+    startNewBattle();
   }, []);
 
   useEffect(() => {
@@ -47,7 +47,8 @@ export default function Pokefight() {
   // Funktion, um den Schaden zu berechnen
   function calculateDamage(attack, defense) {
     const damage = Math.floor(Math.random() * 10) + 1; // Zufälliger Schaden zwischen 1 und 10
-    return damage * (attack / defense);
+    const calculatedDamage = Math.floor(damage * (attack / defense));
+    return Math.max(0, calculatedDamage);
   }
 
   // Funktion, um den Kampf zu simulieren
@@ -56,7 +57,7 @@ export default function Pokefight() {
 
     // Pokémon mit höherer Geschwindigkeit greift zuerst an
     let firstAttacker, secondAttacker;
-    if (pokemon1.speed > pokemon2.speed) {
+    if (pokemon1.base.Speed > pokemon2.base.Speed) {
       firstAttacker = pokemon1;
       secondAttacker = pokemon2;
     } else {
@@ -65,52 +66,84 @@ export default function Pokefight() {
     }
 
     newBattleLog.push(
-      'Kampf zwischen ' + firstAttacker.name + ' und ' + secondAttacker.name
+      'Fight between ' +
+        firstAttacker.name.english +
+        ' and ' +
+        secondAttacker.name.english
     );
 
-    // Kampf-Schleife bis eines der Pokémon keine KP mehr hat
-    while (pokemon1.hp > 0 && pokemon2.hp > 0) {
+    // Kampf-Schleife bis eines der Pokémon keine HP mehr hat
+    while (firstAttacker.base.HP > 0 && secondAttacker.base.HP > 0) {
       // Angriff des ersten Angreifers
       const damage1 = calculateDamage(
-        firstAttacker.attack,
-        secondAttacker.defense
+        firstAttacker.base.Attack,
+        secondAttacker.base.Defense
       );
-      pokemon2.hp -= damage1;
+      secondAttacker.base.HP -= damage1;
 
       newBattleLog.push(
-        firstAttacker.name + ' greift an und fügt ' + damage1 + ' Schaden zu.'
+        firstAttacker.name.english +
+          ' attacks and deals ' +
+          damage1 +
+          ' damage.'
       );
-      newBattleLog.push(
-        secondAttacker.name + ' hat noch ' + pokemon2.hp + ' KP.'
-      );
+      if (Math.max(0, secondAttacker.base.HP) === 0) {
+        newBattleLog.push(
+          secondAttacker.name.english +
+            ' was killed by ' +
+            firstAttacker.name.english
+        );
+      } else {
+        newBattleLog.push(
+          secondAttacker.name.english +
+            ' remains with ' +
+            Math.max(0, secondAttacker.base.HP) +
+            ' HP.'
+        );
+      }
 
       // Überprüfe, ob das zweite Pokémon noch lebt
-      if (pokemon2.hp <= 0) {
+      if (secondAttacker.base.HP <= 0) {
         break;
       }
 
       // Angriff des zweiten Angreifers
       const damage2 = calculateDamage(
-        secondAttacker.attack,
-        firstAttacker.defense
+        secondAttacker.base.Attack,
+        firstAttacker.base.Defense
       );
-      pokemon1.hp -= damage2;
+      firstAttacker.base.HP -= damage2;
 
       newBattleLog.push(
-        secondAttacker.name + ' greift an und fügt ' + damage2 + ' Schaden zu.'
+        secondAttacker.name.english +
+          ' attacks and deals ' +
+          damage2 +
+          ' damage.'
       );
-      newBattleLog.push(
-        firstAttacker.name + ' hat noch ' + pokemon1.hp + ' KP.'
-      );
+
+      if (Math.max(0, firstAttacker.base.HP) === 0) {
+        newBattleLog.push(
+          firstAttacker.name.english +
+            ' was killed by ' +
+            secondAttacker.name.english
+        );
+      } else {
+        newBattleLog.push(
+          firstAttacker.name.english +
+            ' remains with ' +
+            Math.max(0, firstAttacker.base.HP) +
+            ' HP.'
+        );
+      }
     }
 
     // Überprüfe, welches Pokémon gewonnen hat
-    if (pokemon1.hp > 0) {
-      newBattleLog.push(pokemon1.name + ' hat den Kampf gewonnen!');
-    } else if (pokemon2.hp > 0) {
-      newBattleLog.push(pokemon2.name + ' hat den Kampf gewonnen!');
+    if (firstAttacker.base.HP > 0) {
+      newBattleLog.push(firstAttacker.name.english + ' wins the fight!');
+    } else if (secondAttacker.base.HP > 0) {
+      newBattleLog.push(secondAttacker.name.english + ' wins the fight!');
     } else {
-      newBattleLog.push('Es ist ein Unentschieden!');
+      newBattleLog.push('It is a draw!');
     }
 
     setBattleLog(newBattleLog);
@@ -118,42 +151,50 @@ export default function Pokefight() {
 
   // Funktion, um einen neuen Kampf zu starten
   async function startNewBattle() {
-    setPokemon1(getRandomPokemon());
-    setPokemon2(getRandomPokemon());
+    setPokemon1(await getRandomPokemon());
+    setPokemon2(await getRandomPokemon());
     // setBattleLog([]);
   }
 
-  if (Object.keys(pokemon1).length === 0 && Object.keys(pokemon2).length === 0)
-    return <div>Loading...</div>;
+  // if (Object.keys(pokemon1).length === 0 || Object.keys(pokemon2).length === 0)
+  //   return <div>Loading...</div>;
 
   return (
     <div>
-      <button onClick={simulateBattle}>Kampf starten</button>
-      <button onClick={startNewBattle}>Neuer Kampf</button>
+      <button onClick={simulateBattle}>Start Fight</button>
+      <button onClick={startNewBattle}>New Fight</button>
 
       {battleLog.map((log, index) => (
         <p key={index}>{log}</p>
       ))}
 
-      <h2>Pokémon 1</h2>
-      <p>Name: {pokemon1.name.english}</p>
-      <p>Type: {pokemon1.type[0]}</p>
-      <p>Speed: {pokemon1.base.Speed}</p>
-      <p>HP: {pokemon1.base.HP}</p>
-      <p>Attack: {pokemon1.base.Attack}</p>
-      <p>Defense: {pokemon1.base.Defense}</p>
-      <p>Speed Defense: {pokemon1.base['Sp. Defense']}</p>
-      <p>Speed Attack: {pokemon1.base['Sp. Attack']}</p>
+      <h2>Your Pokémon</h2>
+      <img
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon1?.id}.png`}
+        alt={`${pokemon1.name?.english} Image`}
+      />
+      <p>Name: {pokemon1.name?.english}</p>
+      <p>Type: {pokemon1.type?.[0]}</p>
+      <p>Speed: {pokemon1.base?.Speed}</p>
+      <p>HP: {pokemon1.base?.HP}</p>
+      <p>Attack: {pokemon1.base?.Attack}</p>
+      <p>Defense: {pokemon1.base?.Defense}</p>
+      <p>Speed Defense: {pokemon1.base?.['Sp. Defense']}</p>
+      <p>Speed Attack: {pokemon1.base?.['Sp. Attack']}</p>
 
-      <h2>Pokémon 2</h2>
-      <p>Name: {pokemon2.name.english}</p>
-      <p>Type: {pokemon2.type[0]}</p>
-      <p>Speed: {pokemon2.Speed}</p>
-      <p>HP: {pokemon2.hp}</p>
-      <p>Attack: {pokemon2.base.Attack}</p>
-      <p>Defense: {pokemon2.base.Defense}</p>
-      <p>Speed Defense: {pokemon2.base['Sp. Defense']}</p>
-      <p>Speed Attack: {pokemon2.base['Sp. Attack']}</p>
+      <h2>Opponent Pokémon</h2>
+      <img
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon2?.id}.png`}
+        alt={`${pokemon2.name?.english} Image`}
+      />
+      <p>Name: {pokemon2.name?.english}</p>
+      <p>Type: {pokemon2.type?.[0]}</p>
+      <p>Speed: {pokemon2.base?.Speed}</p>
+      <p>HP: {pokemon2.base?.HP}</p>
+      <p>Attack: {pokemon2.base?.Attack}</p>
+      <p>Defense: {pokemon2.base?.Defense}</p>
+      <p>Speed Defense: {pokemon2.base?.['Sp. Defense']}</p>
+      <p>Speed Attack: {pokemon2.base?.['Sp. Attack']}</p>
     </div>
   );
 }
