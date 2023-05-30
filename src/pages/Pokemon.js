@@ -17,7 +17,6 @@ export default function Pokemon() {
         setSinglePokemon(res.data);
       } catch (error) {
         console.error(error);
-
       }
       console.log("fetch");
     };
@@ -51,9 +50,30 @@ export default function Pokemon() {
                 <td>Type:</td>
                 <td>{singlePokemon.type[0]}</td>
               </tr>
+              <h3>Base</h3>
               <tr>
-                <td>Base:</td>
+                <td>HP:</td>
                 <td>{singlePokemon.base.HP}</td>
+              </tr>
+              <tr>
+                <td>Attack:</td>
+                <td>{singlePokemon.base.Attack}</td>
+              </tr>
+              <tr>
+                <td>Defense:</td>
+                <td>{singlePokemon.base.Defense}</td>
+              </tr>
+              <tr>
+                <td>Sp. Attack:</td>
+                <td>{singlePokemon.base["Sp. Attack"]}</td>
+              </tr>
+              <tr>
+                <td>Sp. Defense:</td>
+                <td>{singlePokemon.base["Sp. Defense"]}</td>
+              </tr>
+              <tr>
+                <td>Speed:</td>
+                <td>{singlePokemon.base.Speed}</td>
               </tr>
             </tbody>
           </table>
