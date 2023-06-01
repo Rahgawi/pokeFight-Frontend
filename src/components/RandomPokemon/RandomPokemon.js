@@ -58,6 +58,9 @@ export default function RandomPokemon() {
   return (
     <>
       <div className="random-Wrapper">
+        <div className="h3">
+          <h3>See also...</h3>
+        </div>
         {pokeData.map((pokemon) => {
           const name = pokemon.name.english;
           return (

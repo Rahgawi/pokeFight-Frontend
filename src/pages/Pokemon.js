@@ -1,10 +1,10 @@
 import React from 'react';
 import RandomPokemon from '../components/RandomPokemon/RandomPokemon';
+import './Pokemon.css';
 
-
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export default function Pokemon() {
   const { id } = useParams();
@@ -22,7 +22,7 @@ export default function Pokemon() {
       } catch (error) {
         console.error(error);
       }
-      console.log("fetch");
+      console.log('fetch');
     };
     fetchPokemon();
   }, [id]);
@@ -35,15 +35,16 @@ export default function Pokemon() {
   }
   return (
     <div className="pokemon">
-      <div className="pokeImg">
-        <img
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-          alt={singlePokemon.name}
-        />
-      </div>
       <div className="profile">
         <h3>Profile</h3>
+
         <div className="attribute-list">
+          <div className="pokeImg">
+            <img
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+              alt={singlePokemon.name}
+            />
+          </div>
           <table>
             <tbody>
               <tr>
@@ -69,11 +70,11 @@ export default function Pokemon() {
               </tr>
               <tr>
                 <td>Sp. Attack:</td>
-                <td>{singlePokemon.base["Sp. Attack"]}</td>
+                <td>{singlePokemon.base['Sp. Attack']}</td>
               </tr>
               <tr>
                 <td>Sp. Defense:</td>
-                <td>{singlePokemon.base["Sp. Defense"]}</td>
+                <td>{singlePokemon.base['Sp. Defense']}</td>
               </tr>
               <tr>
                 <td>Speed:</td>
@@ -83,14 +84,10 @@ export default function Pokemon() {
           </table>
         </div>
       </div>
-      
-    <div>
-      <RandomPokemon />
+
+      <div>
+        <RandomPokemon />
+      </div>
     </div>
-  
-
- </div>
-    
- );
-
+  );
 }
