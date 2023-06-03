@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material';
+import '@fontsource/luckiest-guy';
+import '@fontsource/kanit';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 import App from './App';
 
@@ -17,6 +23,27 @@ const theme = createTheme({
     secondary: {
       main: '#FFDE00',
       dark: '#B3A125',
+    },
+  },
+  typography: {
+    fontFamily: ['Roboto', 'Kanit', '"Luckiest Guy"'].join(','),
+    gameHeader: {
+      fontSize: '3rem',
+      fontFamily: '"Luckiest Guy"',
+    },
+    gameStats: {
+      fontSize: '1rem',
+      fontFamily: 'Kanit',
+    },
+    h1: undefined,
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variantMapping: {
+          gameHeader: 'h1',
+        },
+      },
     },
   },
 });

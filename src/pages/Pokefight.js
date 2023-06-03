@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Grid } from '@mui/material';
 
 export default function Pokefight() {
   // Funktion, generiert ein zufälliges ID
@@ -163,10 +163,17 @@ export default function Pokefight() {
   return (
     <div>
       <div className="pokefight-buttons">
-        <Button onClick={simulateBattle} color="primary" variant="contained">
+        <Button
+          onClick={simulateBattle}
+          sx={{ marginRight: 2 }}
+          color="primary"
+          variant="contained">
           Start Fight
         </Button>
-        <Button onClick={startNewBattle} color="secondary" variant="outlined">
+        <Button
+          onClick={startNewBattle}
+          sx={{ color: 'primary.dark' }}
+          variant="outlined">
           New Fight
         </Button>
         {/* <button onClick={simulateBattle}>Start Fight</button>
@@ -174,19 +181,71 @@ export default function Pokefight() {
       </div>
 
       <div className="yourPoke">
-        <h2>Your Pokémon</h2>
+        <Typography variant="gameHeader" color="primary" m={2} p={2}>
+          Your Pokémon
+        </Typography>
         <img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon1?.id}.png`}
           alt={`${pokemon1.name?.english} Image`}
         />
-        <p>Name: {pokemon1.name?.english}</p>
-        <p>Type: {pokemon1.type?.[0]}</p>
-        <p>Speed: {pokemon1.base?.Speed}</p>
-        <p>HP: {pokemon1.base?.HP}</p>
-        <p>Attack: {pokemon1.base?.Attack}</p>
-        <p>Defense: {pokemon1.base?.Defense}</p>
-        <p>Speed Defense: {pokemon1.base?.['Sp. Defense']}</p>
-        <p>Speed Attack: {pokemon1.base?.['Sp. Attack']}</p>
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <Typography variant="gameStats">Name: </Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="gameStats">
+              {pokemon1.name?.english}
+            </Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="gameStats">Type: </Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="gameStats">{pokemon1.type?.[0]}</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="gameStats">Speed:</Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="gameStats">{pokemon1.base?.Speed}</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="gameStats">HP:</Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="gameStats">{pokemon1.base?.HP}</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="gameStats">Attack:</Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="gameStats">{pokemon1.base?.Attack}</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="gameStats">Defense:</Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="gameStats">
+              {pokemon1.base?.Defense}
+            </Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="gameStats">Speed Defense:</Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="gameStats">
+              {pokemon1.base?.['Sp. Defense']}
+            </Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="gameStats">Speed Attack:</Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography variant="gameStats">
+              {pokemon1.base?.['Sp. Attack']}
+            </Typography>
+          </Grid>
+        </Grid>
       </div>
       <hr />
       <div className="battleLog">
@@ -197,6 +256,9 @@ export default function Pokefight() {
       <hr />
 
       <div className="theirPoke">
+        <Typography variant="gameHeader" color="secondary" p={2} m={2}>
+          Opponent Pokémon
+        </Typography>
         <h2>Opponent Pokémon</h2>
         <img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon2?.id}.png`}
