@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button, Typography } from '@mui/material';
 
 export default function Pokefight() {
   // Funktion, generiert ein zufälliges ID
@@ -153,7 +154,7 @@ export default function Pokefight() {
   async function startNewBattle() {
     setPokemon1(await getRandomPokemon());
     setPokemon2(await getRandomPokemon());
-    // setBattleLog([]);
+    setBattleLog([]);
   }
 
   // if (Object.keys(pokemon1).length === 0 || Object.keys(pokemon2).length === 0)
@@ -161,40 +162,55 @@ export default function Pokefight() {
 
   return (
     <div>
-      <button onClick={simulateBattle}>Start Fight</button>
-      <button onClick={startNewBattle}>New Fight</button>
+      <div className="pokefight-buttons">
+        <Button onClick={simulateBattle} color="primary" variant="contained">
+          Start Fight
+        </Button>
+        <Button onClick={startNewBattle} color="secondary" variant="outlined">
+          New Fight
+        </Button>
+        {/* <button onClick={simulateBattle}>Start Fight</button>
+        <button onClick={startNewBattle}>New Fight</button> */}
+      </div>
 
-      {battleLog.map((log, index) => (
-        <p key={index}>{log}</p>
-      ))}
+      <div className="yourPoke">
+        <h2>Your Pokémon</h2>
+        <img
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon1?.id}.png`}
+          alt={`${pokemon1.name?.english} Image`}
+        />
+        <p>Name: {pokemon1.name?.english}</p>
+        <p>Type: {pokemon1.type?.[0]}</p>
+        <p>Speed: {pokemon1.base?.Speed}</p>
+        <p>HP: {pokemon1.base?.HP}</p>
+        <p>Attack: {pokemon1.base?.Attack}</p>
+        <p>Defense: {pokemon1.base?.Defense}</p>
+        <p>Speed Defense: {pokemon1.base?.['Sp. Defense']}</p>
+        <p>Speed Attack: {pokemon1.base?.['Sp. Attack']}</p>
+      </div>
+      <hr />
+      <div className="battleLog">
+        {battleLog.map((log, index) => (
+          <p key={index}>{log}</p>
+        ))}
+      </div>
+      <hr />
 
-      <h2>Your Pokémon</h2>
-      <img
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon1?.id}.png`}
-        alt={`${pokemon1.name?.english} Image`}
-      />
-      <p>Name: {pokemon1.name?.english}</p>
-      <p>Type: {pokemon1.type?.[0]}</p>
-      <p>Speed: {pokemon1.base?.Speed}</p>
-      <p>HP: {pokemon1.base?.HP}</p>
-      <p>Attack: {pokemon1.base?.Attack}</p>
-      <p>Defense: {pokemon1.base?.Defense}</p>
-      <p>Speed Defense: {pokemon1.base?.['Sp. Defense']}</p>
-      <p>Speed Attack: {pokemon1.base?.['Sp. Attack']}</p>
-
-      <h2>Opponent Pokémon</h2>
-      <img
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon2?.id}.png`}
-        alt={`${pokemon2.name?.english} Image`}
-      />
-      <p>Name: {pokemon2.name?.english}</p>
-      <p>Type: {pokemon2.type?.[0]}</p>
-      <p>Speed: {pokemon2.base?.Speed}</p>
-      <p>HP: {pokemon2.base?.HP}</p>
-      <p>Attack: {pokemon2.base?.Attack}</p>
-      <p>Defense: {pokemon2.base?.Defense}</p>
-      <p>Speed Defense: {pokemon2.base?.['Sp. Defense']}</p>
-      <p>Speed Attack: {pokemon2.base?.['Sp. Attack']}</p>
+      <div className="theirPoke">
+        <h2>Opponent Pokémon</h2>
+        <img
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon2?.id}.png`}
+          alt={`${pokemon2.name?.english} Image`}
+        />
+        <p>Name: {pokemon2.name?.english}</p>
+        <p>Type: {pokemon2.type?.[0]}</p>
+        <p>Speed: {pokemon2.base?.Speed}</p>
+        <p>HP: {pokemon2.base?.HP}</p>
+        <p>Attack: {pokemon2.base?.Attack}</p>
+        <p>Defense: {pokemon2.base?.Defense}</p>
+        <p>Speed Defense: {pokemon2.base?.['Sp. Defense']}</p>
+        <p>Speed Attack: {pokemon2.base?.['Sp. Attack']}</p>
+      </div>
     </div>
   );
 }
