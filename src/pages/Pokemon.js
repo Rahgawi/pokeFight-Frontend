@@ -36,8 +36,6 @@ export default function Pokemon() {
   return (
     <div className="pokemon">
       <div className="profile">
-        <h3>Profile</h3>
-
         <div className="attribute-list">
           <div className="pokeImg">
             <img

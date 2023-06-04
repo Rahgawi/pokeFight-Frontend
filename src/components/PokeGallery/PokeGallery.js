@@ -43,7 +43,6 @@ function PokeGallery() {
 
   return (
     <div className="PokeGallery-wrapper">
-      <h1>PokeGallery.js</h1>
       <section className="PokeGallery-container">
         {pokeData.length > 0 ? (
           pokeData.map((pokeObj) => {
