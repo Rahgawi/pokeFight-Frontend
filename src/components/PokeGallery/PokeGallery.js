@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import './PokeGallery.css';
 import PokePreview from './PokePreview/PokePreview';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function PokeGallery() {
@@ -42,16 +43,17 @@ function PokeGallery() {
 
   return (
     <div className="PokeGallery-wrapper">
-      <h1>PokeGallery.js</h1>
       <section className="PokeGallery-container">
         {pokeData.length > 0 ? (
           pokeData.map((pokeObj) => {
             return (
-              <PokePreview
-                id={pokeObj.id}
-                name={pokeObj.name.english}
-                key={pokeObj.id}
-              />
+              <Link to={`/pokemon/${pokeObj.id}`}>
+                <PokePreview
+                  id={pokeObj.id}
+                  name={pokeObj.name.english}
+                  key={pokeObj.id}
+                />
+              </Link>
             );
           })
         ) : (

@@ -1,0 +1,31 @@
+.pokemon {
+  background-color: #3b4cca;
+}
+.profile {
+  display: flex;
+  justify-content: center;
+}
+
+.pokeImg img {
+  width: 130px;
+  height: 160px;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 10px 5px 10px #333;
+  object-fit: cover;
+  background-color: #cc0000;
+}
+
+.attribute-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  box-shadow: 10px 10px 10px #333;
+  padding: 2rem;
+  margin-top: 2rem;
+  background-color: #ffde00;
+  font-size: 1.7rem;
+}

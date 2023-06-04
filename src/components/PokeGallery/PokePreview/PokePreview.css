@@ -1,7 +1,13 @@
 .PokePreview-wrapper {
-  border: solid 3px orange;
   padding: 1em;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 18rem;
+  background-color: #ffde00;
+  border-radius: 1.5rem;
+  transition: all 0.2s;
+  box-shadow: inset 4px 4px 6px -2px #ffdbdb, inset -4px -4px 4px 0px #897808;
 }
 
 .PokePreview-img {
@@ -9,6 +15,13 @@
   height: auto;
 }
 
+.PokePreview-img:hover {
+  transform: scale(1.02);
+  box-shadow: inset 0px -3px 10px 6px #fff97c;
+}
+
 .PokePreview-pokemon-name {
   font-size: 1.2em;
+  text-decoration: none;
+  color: black;
 }

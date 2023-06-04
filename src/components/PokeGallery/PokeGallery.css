@@ -1,10 +1,16 @@
 .PokeGallery-wrapper {
-  border: solid 3px red;
+  background-color: #3b4cca;
 }
 
 .PokeGallery-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr;
+  */
+  grid-template-columns: repeat(auto-fit, 18rem);
+  justify-content: center;
+  gap: 4rem;
+  padding: 3rem;
+  margin-bottom: 2rem;
 }
 
 .PokeGallery-btn-section {

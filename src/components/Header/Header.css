@@ -1,1 +1,37 @@
 /* .Header-wrapper {} */
+header {
+  margin: 0 auto;
+  height: 45vh;
+  background-color: #cc0000;
+}
+.title {
+  display: flex;
+  justify-content: center;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+}
+.menubtns {
+  background-color: #3b4cca;
+  /* margin: 3rem; */
+
+  border: none;
+  /* width: 70%; */
+  height: min-content;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+
+  box-shadow: inset 4px 4px 6px -2px #ffde00, inset -4px -4px 4px 0px #897808;
+}
+
+.active {
+  background-color: linear-gradient(178deg, #f9f5e3, #d2d2d2 99%);
+  box-shadow: 2px 2px 2px #fcb690ea;
+}
