@@ -5,7 +5,10 @@ function Footer() {
       <div className="footer">
         <div className="footer-container">
           <p className="box">
-            <strong>Pokefight</strong>
+            <img
+              src={require('../Header/images/Pokefight.png')}
+              width="130px"
+            />
             <br></br>
             <br></br>
           </p>

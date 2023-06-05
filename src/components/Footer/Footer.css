@@ -32,3 +32,11 @@ strong {
   width: max-content;
   border-radius: 0.3rem;
 }
+
+@media only screen and (max-width: 700px) {
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+}
