@@ -11,7 +11,7 @@ export default function Leaderboard() {
 
   useEffect(() => {
     const fetchGames = async () => {
-      const URI = `http://localhost:8080/game/leaderboard`;
+      const URI = `${process.env.REACT_APP_POKE_API}/game/leaderboard`;
 
       try {
         const res = await axios.get(URI);

@@ -23,7 +23,7 @@ export default function RandomPokemon() {
     setPokeData([]);
     const fetchPokemon = async (id) => {
       console.log('Fetching ID: ', id);
-      const fetchUrl = `http://localhost:8080/pokemon/${id}`;
+      const fetchUrl = `${process.env.REACT_APP_POKE_API}/pokemon/${id}`;
       try {
         const response = await fetch(fetchUrl);
         const data = await response.json();

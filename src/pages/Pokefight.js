@@ -20,7 +20,7 @@ export default function Pokefight() {
   };
   const fetchPokemon = async (id) => {
     console.log('Fetching ID: ', id);
-    const fetchUrl = `http://localhost:8080/pokemon/${id}`;
+    const fetchUrl = `${process.env.REACT_APP_POKE_API}/pokemon/${id}`;
     try {
       const response = await fetch(fetchUrl);
       const data = await response.json();
@@ -64,7 +64,7 @@ export default function Pokefight() {
     console.log('isGameDone: ', isGameDone);
     if (isGameDone) {
       const saveGame = async () => {
-        const saveUrl = 'http://localhost:8080/game/save';
+        const saveUrl = `${process.env.REACT_APP_POKE_API}/game/save`;
         const data = {
           pokemon1: { id: pokemon1.id, name: pokemon1.name.english },
           pokemon2: { id: pokemon2.id, name: pokemon2.name.english },

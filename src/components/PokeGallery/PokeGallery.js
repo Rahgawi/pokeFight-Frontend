@@ -20,7 +20,7 @@ function PokeGallery() {
     const indexTo = page * pokePerPage;
 
     const fetchPokemons = async () => {
-      const URI = `http://localhost:8080/pokemon?indexFrom=${indexFrom}&indexTo=${indexTo}`;
+      const URI = `${process.env.REACT_APP_POKE_API}/pokemon?indexFrom=${indexFrom}&indexTo=${indexTo}`;
 
       try {
         const res = await axios.get(URI);
