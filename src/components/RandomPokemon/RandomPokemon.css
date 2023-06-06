@@ -22,3 +22,9 @@
   margin-bottom: 2rem;
   box-shadow: inset 0px -3px 10px 6px #fff97c;
 }
+
+@media only screen and (max-width: 700px) {
+  .random-pokePreview {
+    flex-wrap: wrap;
+  }
+}
