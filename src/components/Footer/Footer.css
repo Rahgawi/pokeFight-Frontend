@@ -1,1 +1,42 @@
-/* .Footer-wrapper {} */
+ooter {
+  font-size: 1.2rem;
+}
+
+strong {
+  font-family: 'Darumadrop One';
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  text-align: left;
+  padding: 2rem;
+  color: white;
+  background-color: #cc0000;
+  /* border: 1px solid violet; */
+}
+
+.box {
+  width: 48%;
+}
+.list-item {
+  list-style: none;
+}
+.links {
+  text-decoration: none;
+  color: white;
+}
+.list-item:hover {
+  background-color: rgba(255, 255, 255, 0.308);
+  width: max-content;
+  border-radius: 0.3rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+}

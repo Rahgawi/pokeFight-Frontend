@@ -40,6 +40,9 @@ export default function Pokefight() {
   const [pokemon1, setPokemon1] = useState({});
   const [pokemon2, setPokemon2] = useState({});
   const [battleLog, setBattleLog] = useState([]);
+  const [winner, setWinner] = useState({});
+  const [rounds, setRounds] = useState(0);
+  const [isGameDone, setIsGameDone] = useState(false);
 
   useEffect(() => {
     startNewBattle();
@@ -52,6 +55,43 @@ export default function Pokefight() {
   useEffect(() => {
     console.log('POKEMON 2: ', pokemon2);
   }, [pokemon2]);
+
+  useEffect(() => {
+    console.log('ROUNDS: ', rounds);
+  }, [rounds]);
+
+  useEffect(() => {
+    console.log('isGameDone: ', isGameDone);
+    if (isGameDone) {
+      const saveGame = async () => {
+        const saveUrl = 'http://localhost:8080/game/save';
+        const data = {
+          pokemon1: { id: pokemon1.id, name: pokemon1.name.english },
+          pokemon2: { id: pokemon2.id, name: pokemon2.name.english },
+          winner: { id: winner.id, name: winner.name.english },
+          rounds: rounds,
+        };
+
+        console.log('data: ', data);
+
+        try {
+          const response = await fetch(saveUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          });
+
+          return response.json();
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+      saveGame();
+    }
+  }, [isGameDone]);
 
   // Funktion, um den Schaden zu berechnen
   function calculateDamage(attack, defense) {
@@ -81,8 +121,12 @@ export default function Pokefight() {
         secondAttacker.name.english
     );
 
+    let rounds = 0;
+
     // Kampf-Schleife bis eines der Pokémon keine HP mehr hat
     while (firstAttacker.base.HP > 0 && secondAttacker.base.HP > 0) {
+      rounds++;
+
       // Angriff des ersten Angreifers
       const damage1 = calculateDamage(
         firstAttacker.base.Attack,
@@ -149,13 +193,20 @@ export default function Pokefight() {
     // Überprüfe, welches Pokémon gewonnen hat
     if (firstAttacker.base.HP > 0) {
       newBattleLog.push(firstAttacker.name.english + ' wins the fight!');
+      setWinner(firstAttacker);
     } else if (secondAttacker.base.HP > 0) {
       newBattleLog.push(secondAttacker.name.english + ' wins the fight!');
+      setWinner(secondAttacker);
     } else {
       newBattleLog.push('It is a draw!');
+      setWinner({ id: 0, name: { english: 'DRAW' } });
     }
 
+    newBattleLog.push('Rounds: ' + rounds);
+    setRounds(rounds);
+
     setBattleLog(newBattleLog);
+    setIsGameDone(true);
   }
 
   // Funktion, um einen neuen Kampf zu starten
@@ -163,6 +214,7 @@ export default function Pokefight() {
     setPokemon1(await getRandomPokemon());
     setPokemon2(await getRandomPokemon());
     setBattleLog(['Click START FIGHT!']);
+    setIsGameDone(false);
   }
 
   // if (Object.keys(pokemon1).length === 0 || Object.keys(pokemon2).length === 0)

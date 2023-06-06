@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Pokemon from './pages/Pokemon';
 import { Routes, Route } from 'react-router-dom';
 import Pokefight from './pages/Pokefight';
+import Leaderboard from './pages/Leaderboard';
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
         <Route path="/pokemon" element={<Home />} />
         <Route path="/pokemon/:id" element={<Pokemon />} />
         <Route path="/pokemon/pokefight" element={<Pokefight />} />
+        <Route
+          path="/pokemon/pokefight/leaderboard"
+          element={<Leaderboard />}
+        />
       </Routes>
       <Footer />
     </div>

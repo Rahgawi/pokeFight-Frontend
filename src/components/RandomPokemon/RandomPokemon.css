@@ -2,6 +2,8 @@
   display: flex;
   flex-wrap: wrap;
   text-decoration: none;
+  margin-top: 2rem;
+  justify-content: space-around;
 }
 
 .random-Wrapper a {
@@ -11,4 +13,18 @@
 
 .random-pokePreview {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 5.6rem;
+  background-color: #e4dc39;
+  border-radius: 1.5rem;
+  transition: all 0.2s;
+  margin-bottom: 2rem;
+  box-shadow: inset 0px -3px 10px 6px #fff97c;
+}
+
+@media only screen and (max-width: 700px) {
+  .random-pokePreview {
+    flex-wrap: wrap;
+  }
 }
