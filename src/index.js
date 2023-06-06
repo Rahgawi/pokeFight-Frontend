@@ -23,6 +23,7 @@ const theme = createTheme({
     secondary: {
       main: '#FFDE00',
       dark: '#B3A125',
+      blue: '#3B4CCA',
     },
   },
   typography: {
@@ -34,6 +35,11 @@ const theme = createTheme({
     gameStats: {
       fontSize: '1rem',
       fontFamily: 'Kanit',
+    },
+    gameStatsWhite: {
+      fontSize: '1rem',
+      fontFamily: 'Kanit',
+      color: 'white',
     },
     h1: undefined,
   },
