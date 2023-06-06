@@ -31,6 +31,7 @@ export default function Pokefight() {
   const [pokemon1, setPokemon1] = useState({});
   const [pokemon2, setPokemon2] = useState({});
   const [battleLog, setBattleLog] = useState([]);
+  const [rounds, setRounds] = useState(0);
 
   useEffect(() => {
     startNewBattle();
@@ -43,6 +44,10 @@ export default function Pokefight() {
   useEffect(() => {
     console.log('POKEMON 2: ', pokemon2);
   }, [pokemon2]);
+
+  useEffect(() => {
+    console.log('ROUNDS: ', rounds);
+  }, [rounds]);
 
   // Funktion, um den Schaden zu berechnen
   function calculateDamage(attack, defense) {
@@ -72,8 +77,12 @@ export default function Pokefight() {
         secondAttacker.name.english
     );
 
+    let rounds = 0;
+
     // Kampf-Schleife bis eines der Pokémon keine HP mehr hat
     while (firstAttacker.base.HP > 0 && secondAttacker.base.HP > 0) {
+      rounds++;
+
       // Angriff des ersten Angreifers
       const damage1 = calculateDamage(
         firstAttacker.base.Attack,
@@ -146,7 +155,10 @@ export default function Pokefight() {
       newBattleLog.push('It is a draw!');
     }
 
+    newBattleLog.push('Rounds: ' + rounds);
+
     setBattleLog(newBattleLog);
+    setRounds(rounds);
   }
 
   // Funktion, um einen neuen Kampf zu starten
