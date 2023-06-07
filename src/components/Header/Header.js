@@ -1,15 +1,17 @@
 import './Header.css';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
   return (
     <header className="Header-wrapper">
       <div className="title">
-        <img
-          src={require('./images/Pokefight.png')}
-          alt="pokefight"
-          max-width="400px"
-        />
+        <Link to="../">
+          <img
+            src={require('./images/Pokefight.png')}
+            alt="pokefight"
+            max-width="400px"
+          />
+        </Link>
       </div>
 
       <nav>

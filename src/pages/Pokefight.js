@@ -7,10 +7,18 @@ import {
   Box,
   CssBaseline,
   Paper,
+  useMediaQuery,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 export default function Pokefight() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  useEffect(() => {
+    console.log(isMobile);
+  }, [isMobile]);
+
   // Funktion, generiert ein zufälliges ID
   const generateIDs = () => {
     let pokeID = 0;
@@ -243,6 +251,7 @@ export default function Pokefight() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            pt: isMobile ? 5 : 0,
           }}>
           <Button
             onClick={simulateBattle}
@@ -270,6 +279,7 @@ export default function Pokefight() {
           p: 0,
           display: 'flex',
           // width: '100%',
+          // flexDirection: isMobile ? 'colu'
           justifyContent: 'center',
           alignItems: 'center',
         }}>
@@ -277,9 +287,10 @@ export default function Pokefight() {
           maxWidth={false}
           sx={{
             display: 'flex',
-            p: 5,
+            p: isMobile ? 2 : 5,
+            flexDirection: isMobile ? 'column' : 'row',
             justifyContent: 'center',
-            alignItems: 'flex-start',
+            alignItems: isMobile ? 'center' : 'flex-start',
           }}>
           <Container
             sx={{
@@ -618,6 +629,7 @@ export default function Pokefight() {
               justifyContent: 'center',
               alignItems: 'flex-start',
               width: 'auto',
+              pt: isMobile ? 5 : 0,
               // flexGrow: '0',
               // flexShrink: '0',
             }}>
