@@ -7,9 +7,18 @@ import {
   Box,
   CssBaseline,
   Paper,
+  useMediaQuery,
 } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 export default function Pokefight() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  useEffect(() => {
+    console.log(isMobile);
+  }, [isMobile]);
+
   // Funktion, generiert ein zufälliges ID
   const generateIDs = () => {
     let pokeID = 0;
@@ -205,7 +214,18 @@ export default function Pokefight() {
     newBattleLog.push('Rounds: ' + rounds);
     setRounds(rounds);
 
-    setBattleLog(newBattleLog);
+    // Clear the battle log and start displaying entries with delay
+    setBattleLog([]);
+    newBattleLog.forEach((log, index) => {
+      setTimeout(() => {
+        setBattleLog((prevLog) => [...prevLog, log]);
+        if (index === newBattleLog.length - 1) {
+          setIsGameDone(true);
+        }
+      }, (index + 1) * 500); // Delay each entry by 1 second (adjust as needed)
+    });
+
+    // setBattleLog(newBattleLog);
     setIsGameDone(true);
   }
 
@@ -242,6 +262,7 @@ export default function Pokefight() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            pt: isMobile ? 5 : 0,
           }}>
           <Button
             onClick={simulateBattle}
@@ -252,10 +273,13 @@ export default function Pokefight() {
           </Button>
           <Button
             onClick={startNewBattle}
-            sx={{ color: 'primary.main' }}
+            sx={{ mr: 2, color: 'primary.main' }}
             variant="outlined">
             New Fight
           </Button>
+          <Link to="../pokemon/leaderboard">
+            <Button sx={{ color: 'secondary.main' }}>Leaderboard</Button>
+          </Link>
         </Box>
       </Container>
 
@@ -266,6 +290,7 @@ export default function Pokefight() {
           p: 0,
           display: 'flex',
           // width: '100%',
+          // flexDirection: isMobile ? 'colu'
           justifyContent: 'center',
           alignItems: 'center',
         }}>
@@ -273,9 +298,10 @@ export default function Pokefight() {
           maxWidth={false}
           sx={{
             display: 'flex',
-            p: 5,
+            p: isMobile ? 2 : 5,
+            flexDirection: isMobile ? 'column' : 'row',
             justifyContent: 'center',
-            alignItems: 'flex-start',
+            alignItems: isMobile ? 'center' : 'flex-start',
           }}>
           <Container
             sx={{
@@ -614,6 +640,7 @@ export default function Pokefight() {
               justifyContent: 'center',
               alignItems: 'flex-start',
               width: 'auto',
+              pt: isMobile ? 5 : 0,
               // flexGrow: '0',
               // flexShrink: '0',
             }}>
@@ -646,7 +673,8 @@ export default function Pokefight() {
                   spacing={1}
                   justifyContent="center"
                   alignItems="center"
-                  p={0}>
+                  p={0}
+                  sx={{ minWidth: 200 }}>
                   <Grid item xs={5}>
                     <Paper
                       elevation={3}

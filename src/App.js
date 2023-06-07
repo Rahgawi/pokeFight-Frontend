@@ -12,13 +12,10 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/pokemon" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/pokemon/:id" element={<Pokemon />} />
         <Route path="/pokemon/pokefight" element={<Pokefight />} />
-        <Route
-          path="/pokemon/pokefight/leaderboard"
-          element={<Leaderboard />}
-        />
+        <Route path="/pokemon/leaderboard" element={<Leaderboard />} />
       </Routes>
       <Footer />
     </div>

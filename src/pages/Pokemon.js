@@ -1,6 +1,8 @@
 import React from 'react';
 import RandomPokemon from '../components/RandomPokemon/RandomPokemon';
 import './Pokemon.css';
+import '@fontsource/luckiest-guy';
+import '@fontsource/kanit';
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -12,7 +14,7 @@ export default function Pokemon() {
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      const URI = `http://localhost:8080/pokemon/${id}`;
+      const URI = `${process.env.REACT_APP_POKE_API}/pokemon/${id}`;
 
       try {
         const res = await axios.get(URI);
@@ -39,7 +41,7 @@ export default function Pokemon() {
         <div className="attribute-list">
           <div className="pokeImg">
             <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
               alt={singlePokemon.name}
             />
           </div>
@@ -53,7 +55,7 @@ export default function Pokemon() {
                 <td>Type:</td>
                 <td>{singlePokemon.type[0]}</td>
               </tr>
-              <h3>Base</h3>
+              <p className="base">Base</p>
               <tr>
                 <td>HP:</td>
                 <td>{singlePokemon.base.HP}</td>

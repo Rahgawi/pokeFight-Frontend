@@ -5,16 +5,35 @@
   background-color: #3b4cca;
 }
 
+.leaderboard h1 {
+  font-size: 4rem;
+}
+
+.title {
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #cc0000;
+}
+
 .data-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: #3b4cca;
+  width: 50%;
+}
+
+.leaderboard-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .winner-container h3 {
   font-family: 'Kanit', sans-serif;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .title {
@@ -27,30 +46,55 @@
 }
 h4 {
   font-family: 'Luckiest Guy', sans-serif;
-  font-size: 2rem;
-  margin-top: 1rem;
+  font-size: 4rem;
+  margin-top: 0rem;
+  color: #ff0000;
+}
+
+h3 {
   color: white;
 }
 .pokemon-fight {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  max-width: 100%;
+  justify-content: flex-start;
+  width: 100%;
+  border-bottom: dotted #cc0000;
 }
 .pokemon-container {
   justify-content: space-between;
-
+  width: 50%;
+  text-align: center;
   box-sizing: border-box;
   border-radius: 1rem;
   box-shadow: 10px 10px 10px #333;
   padding: 2rem;
   margin: 3rem;
   background-color: #ffde00;
-  font-size: 1.7rem;
+  /* font-size: 200%; */
   font-family: 'Luckiest Guy', sans-serif;
+}
+
+.pokemon-container a {
+  text-decoration: none;
+  color: black;
+}
+
+.pokemon-container p {
+  font-size: 200%;
 }
 
 .winner-container {
   display: flex;
   align-items: center;
   flex-direction: column;
+  flex-wrap: nowrap;
+  padding-bottom: 2rem;
+}
+
+.fighting-pokes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,5 +1,6 @@
 .pokemon {
   background-color: #3b4cca;
+  padding-top: 2rem;
 }
 .profile {
   display: flex;
@@ -7,19 +8,23 @@
 }
 
 .pokeImg img {
-  width: 130px;
-  height: 160px;
+  display: flex;
+  justify-content: center;
+  width: 15rem;
+  height: 15rem;
   border-radius: 2rem;
   overflow: hidden;
   box-shadow: 10px 5px 10px #333;
   object-fit: cover;
   background-color: #cc0000;
+  margin-bottom: 2rem;
 }
 
 .attribute-list {
+  font-family: 'Kanit', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   width: 50%;
   box-sizing: border-box;
   border-radius: 1rem;
@@ -28,6 +33,13 @@
   margin-top: 3rem;
   background-color: #ffde00;
   font-size: 1.7rem;
+}
+
+.base {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #cc0000;
+  /* border-bottom: dotted #cc0000; */
 }
 
 @media only screen and (max-width: 500px) {

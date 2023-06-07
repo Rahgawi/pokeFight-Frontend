@@ -4,6 +4,8 @@ import PokePreview from './PokePreview/PokePreview';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import '@fontsource/luckiest-guy';
+import '@fontsource/kanit';
 
 function PokeGallery() {
   const [pokeData, setPokeData] = useState([]);

@@ -1,8 +1,13 @@
 /* .Header-wrapper {} */
 header {
   margin: 0 auto;
-  height: 45vh;
+  height: 16rem;
+  padding-top: 1rem;
   background-color: #cc0000;
+}
+
+header img {
+  max-width: 30rem;
 }
 .title {
   display: flex;
@@ -13,20 +18,25 @@ nav {
   justify-content: center;
   justify-content: space-around;
 }
+
 .menubtns {
+  font-family: 'Kanit', sans-serif;
   background-color: #3b4cca;
   /* margin: 3rem; */
-
+  margin-top: -2rem;
+  margin-bottom: 1rem;
+  text-align: center;
   border: none;
   /* width: 70%; */
   height: min-content;
+  width: 12rem;
   padding: 1rem;
   border-radius: 0.5rem;
   font-size: 2rem;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  color: black;
+  color: white;
 
   box-shadow: inset 4px 4px 6px -2px #ffde00, inset -4px -4px 4px 0px #897808;
 }
