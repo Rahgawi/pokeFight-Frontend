@@ -214,7 +214,18 @@ export default function Pokefight() {
     newBattleLog.push('Rounds: ' + rounds);
     setRounds(rounds);
 
-    setBattleLog(newBattleLog);
+    // Clear the battle log and start displaying entries with delay
+    setBattleLog([]);
+    newBattleLog.forEach((log, index) => {
+      setTimeout(() => {
+        setBattleLog((prevLog) => [...prevLog, log]);
+        if (index === newBattleLog.length - 1) {
+          setIsGameDone(true);
+        }
+      }, (index + 1) * 500); // Delay each entry by 1 second (adjust as needed)
+    });
+
+    // setBattleLog(newBattleLog);
     setIsGameDone(true);
   }
 
