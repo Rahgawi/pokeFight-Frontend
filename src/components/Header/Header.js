@@ -5,11 +5,15 @@ function Header() {
   return (
     <header className="Header-wrapper">
       <div className="title">
-        <img src={require('./images/Pokefight.png')} alt="pokefight" />
+        <img
+          src={require('./images/Pokefight.png')}
+          alt="pokefight"
+          max-width="400px"
+        />
       </div>
 
       <nav>
-        <NavLink className="menubtns" to="pokemon">
+        <NavLink className="menubtns" to="/">
           Home
         </NavLink>
         <NavLink className="menubtns" to="pokemon/pokefight">

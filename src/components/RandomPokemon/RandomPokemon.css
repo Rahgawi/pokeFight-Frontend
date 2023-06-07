@@ -3,12 +3,14 @@
   flex-wrap: wrap;
   text-decoration: none;
   margin-top: 2rem;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: baseline;
 }
 
 .random-Wrapper a {
   text-decoration: none;
   color: black;
+  font-family: 'Kanit', sans-serif;
 }
 
 .random-pokePreview {
@@ -21,6 +23,14 @@
   transition: all 0.2s;
   margin-bottom: 2rem;
   box-shadow: inset 0px -3px 10px 6px #fff97c;
+  margin-right: 4rem;
+}
+
+.see-also h3 {
+  color: white;
+  margin-right: 2rem;
+  vertical-align: center;
+  font-family: 'Kanit', sans-serif;
 }
 
 @media only screen and (max-width: 700px) {

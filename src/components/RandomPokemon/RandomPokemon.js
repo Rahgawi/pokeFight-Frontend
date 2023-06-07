@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './RandomPokemon.css';
+import '@fontsource/luckiest-guy';
+import '@fontsource/kanit';
 import { Link } from 'react-router-dom';
 
 let pokemonIds = [];
@@ -58,7 +60,7 @@ export default function RandomPokemon() {
   return (
     <>
       <div className="random-Wrapper">
-        <div className="h3">
+        <div className="see-also">
           <h3>See also...</h3>
         </div>
         {pokeData.map((pokemon) => {

@@ -1,5 +1,6 @@
 .PokeGallery-wrapper {
   background-color: #3b4cca;
+  padding-top: 2rem;
 }
 
 .PokeGallery-container {
@@ -11,6 +12,12 @@
   gap: 4rem;
   padding: 3rem;
   margin-bottom: 2rem;
+}
+
+.PokeGallery-container a {
+  text-decoration: none;
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.5rem;
 }
 
 .PokeGallery-btn-section {

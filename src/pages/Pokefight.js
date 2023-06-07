@@ -8,6 +8,7 @@ import {
   CssBaseline,
   Paper,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function Pokefight() {
   // Funktion, generiert ein zufälliges ID
@@ -252,10 +253,13 @@ export default function Pokefight() {
           </Button>
           <Button
             onClick={startNewBattle}
-            sx={{ color: 'primary.main' }}
+            sx={{ mr: 2, color: 'primary.main' }}
             variant="outlined">
             New Fight
           </Button>
+          <Link to="../pokemon/leaderboard">
+            <Button sx={{ color: 'secondary.main' }}>Leaderboard</Button>
+          </Link>
         </Box>
       </Container>
 
@@ -646,7 +650,8 @@ export default function Pokefight() {
                   spacing={1}
                   justifyContent="center"
                   alignItems="center"
-                  p={0}>
+                  p={0}
+                  sx={{ minWidth: 200 }}>
                   <Grid item xs={5}>
                     <Paper
                       elevation={3}
